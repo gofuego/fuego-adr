@@ -1,0 +1,81 @@
+{{define "content"}}
+<div>
+  <!-- TBD Alert Banner -->
+  {{if .Page.Envelope.tbd_adrs}}
+  <div class="bg-yellow-900/30 border border-yellow-700/50 rounded-lg p-4 mb-8">
+    <div class="flex items-center gap-2 mb-2">
+      <span class="text-yellow-400 font-semibold">{{len .Page.Envelope.tbd_adrs}} decision{{if gt (len .Page.Envelope.tbd_adrs) 1}}s{{end}} need{{if eq (len .Page.Envelope.tbd_adrs) 1}}s{{end}} input</span>
+    </div>
+    <div class="flex flex-wrap gap-3">
+      {{range .Page.Envelope.tbd_adrs}}
+      <a href="{{.url}}" class="text-sm text-yellow-300 hover:text-yellow-100 transition-colors">
+        ADR-{{.number}} {{.title}}
+        {{if .deadline}}<span class="text-yellow-500 text-xs ml-1">({{.deadline}})</span>{{end}}
+      </a>
+      {{end}}
+    </div>
+  </div>
+  {{end}}
+
+  <!-- Proposed Banner -->
+  {{if .Page.Envelope.proposed_adrs}}
+  <div class="bg-blue-900/20 border border-blue-800/40 rounded-lg p-4 mb-8">
+    <div class="flex items-center gap-2 mb-2">
+      <span class="text-blue-400 font-semibold">{{len .Page.Envelope.proposed_adrs}} proposed</span>
+    </div>
+    <div class="flex flex-wrap gap-3">
+      {{range .Page.Envelope.proposed_adrs}}
+      <a href="{{.url}}" class="text-sm text-blue-300 hover:text-blue-100 transition-colors">
+        ADR-{{.number}} {{.title}}
+      </a>
+      {{end}}
+    </div>
+  </div>
+  {{end}}
+
+  <!-- Active Decisions -->
+  <div>
+    <div class="flex items-center justify-between mb-4">
+      <h2 class="text-xl font-bold text-white">Active Decisions</h2>
+      <input type="text" placeholder="Filter..." class="bg-gray-800 border border-gray-700 rounded px-3 py-1.5 text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:border-blue-500" data-search-input>
+    </div>
+    <div class="space-y-2" data-search-list>
+      {{range .Page.Envelope.accepted_adrs}}
+      <a href="{{.url}}" class="block p-3 rounded-lg bg-gray-900 border border-gray-800 hover:border-gray-600 transition-colors" data-search-item>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-mono text-gray-500">ADR-{{.number}}</span>
+            <span class="text-sm text-white">{{.title}}</span>
+          </div>
+          <div class="flex gap-1.5">
+            {{range .tags}}
+            <span class="px-1.5 py-0.5 bg-gray-800 text-gray-400 rounded text-xs">#{{.}}</span>
+            {{end}}
+          </div>
+        </div>
+      </a>
+      {{end}}
+    </div>
+  </div>
+
+  <!-- Deprecated / Superseded (collapsed) -->
+  {{if .Page.Envelope.inactive_adrs}}
+  <details class="mt-8">
+    <summary class="text-sm text-gray-500 cursor-pointer hover:text-gray-300 transition-colors">
+      {{len .Page.Envelope.inactive_adrs}} deprecated or superseded decisions
+    </summary>
+    <div class="mt-2 space-y-1">
+      {{range .Page.Envelope.inactive_adrs}}
+      <a href="{{.url}}" class="block p-2 rounded text-sm text-gray-500 hover:text-gray-300 transition-colors">
+        <span class="font-mono">ADR-{{.number}}</span>
+        <span class="ml-2">{{.title}}</span>
+        <span class="ml-2 text-xs px-1.5 py-0.5 rounded
+          {{if eq .status "deprecated"}}bg-red-900/50 text-red-400
+          {{else}}bg-gray-800 text-gray-500{{end}}">{{.status}}</span>
+      </a>
+      {{end}}
+    </div>
+  </details>
+  {{end}}
+</div>
+{{end}}

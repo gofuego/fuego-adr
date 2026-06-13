@@ -1,0 +1,79 @@
+{{define "content"}}
+<article>
+  <!-- Header -->
+  <div class="mb-8">
+    <div class="flex items-center gap-3 mb-2">
+      {{if .Page.Envelope.adr_number}}<span class="text-sm font-mono text-gray-500">ADR-{{.Page.Envelope.adr_number}}</span>{{end}}
+      {{if .Page.Envelope.status}}
+      <span class="px-2 py-0.5 rounded text-xs font-semibold
+        {{if eq .Page.Envelope.status "accepted"}}bg-green-900 text-green-300
+        {{else if eq .Page.Envelope.status "tbd"}}bg-yellow-900 text-yellow-300
+        {{else if eq .Page.Envelope.status "proposed"}}bg-blue-900 text-blue-300
+        {{else if eq .Page.Envelope.status "deprecated"}}bg-red-900 text-red-300
+        {{else if eq .Page.Envelope.status "superseded"}}bg-gray-700 text-gray-300
+        {{end}}">{{.Page.Envelope.status}}</span>
+      {{end}}
+    </div>
+    <h1 class="text-3xl font-bold text-white mb-4">{{.Page.Envelope.title}}</h1>
+
+    <!-- Metadata grid -->
+    <div class="grid grid-cols-2 gap-x-8 gap-y-2 text-sm text-gray-400 border-b border-gray-800 pb-4">
+      {{if .Page.Envelope.author}}
+      <div><span class="text-gray-500">Author:</span> {{range $i, $a := .Page.Envelope.author}}{{if $i}}, {{end}}{{$a}}{{end}}</div>
+      {{end}}
+      {{if .Page.Envelope.date_proposed}}
+      <div><span class="text-gray-500">Proposed:</span> {{.Page.Envelope.date_proposed}}</div>
+      {{end}}
+      {{if .Page.Envelope.approvers}}
+      <div><span class="text-gray-500">Approvers:</span> {{range $i, $a := .Page.Envelope.approvers}}{{if $i}}, {{end}}{{$a}}{{end}}</div>
+      {{end}}
+      {{if .Page.Envelope.date_accepted}}
+      <div><span class="text-gray-500">Accepted:</span> {{.Page.Envelope.date_accepted}}</div>
+      {{end}}
+      {{if .Page.Envelope.deadline}}
+      <div><span class="text-gray-500">Deadline:</span> <span class="text-yellow-400">{{.Page.Envelope.deadline}}</span></div>
+      {{end}}
+    </div>
+
+    <!-- Supersession chain -->
+    {{if or .Page.Envelope.supersedes .Page.Envelope.superseded_by}}
+    <div class="mt-3 text-sm text-gray-400">
+      {{if .Page.Envelope.supersedes}}
+      <span>Supersedes: {{range $i, $n := .Page.Envelope.supersedes}}{{if $i}}, {{end}}<a href="." class="text-blue-400 hover:underline" data-adr-link="{{$n}}">ADR-{{$n}}</a>{{end}}</span>
+      {{end}}
+      {{if .Page.Envelope.superseded_by}}
+      <span class="ml-4">Superseded by: {{range $i, $n := .Page.Envelope.superseded_by}}{{if $i}}, {{end}}<a href="." class="text-blue-400 hover:underline" data-adr-link="{{$n}}">ADR-{{$n}}</a>{{end}}</span>
+      {{end}}
+    </div>
+    {{end}}
+
+    <!-- Tags -->
+    {{if .Page.Envelope.tags}}
+    <div class="mt-3 flex gap-2 flex-wrap">
+      {{range .Page.Envelope.tags}}
+      <a href="tags/{{.}}" class="px-2 py-0.5 bg-gray-800 text-gray-300 rounded text-xs hover:bg-gray-700 transition-colors">#{{.}}</a>
+      {{end}}
+    </div>
+    {{end}}
+  </div>
+
+  <!-- Sections -->
+  <div class="prose prose-invert prose-sm max-w-none">
+    {{.Page.Content}}
+  </div>
+
+  <!-- Affected files -->
+  {{if .Page.Envelope.affects}}
+  <div class="mt-8 border-t border-gray-800 pt-6">
+    <h2 class="text-lg font-semibold text-white mb-3">Affected Files</h2>
+    <div class="space-y-1" data-affects-list>
+      {{range .Page.Envelope.affects}}
+      <div class="text-sm font-mono" data-affects-pattern="{{.}}">
+        <span class="text-gray-400">{{.}}</span>
+      </div>
+      {{end}}
+    </div>
+  </div>
+  {{end}}
+</article>
+{{end}}

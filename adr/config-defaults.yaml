@@ -1,0 +1,12 @@
+# Config defaults contributed by the ADR pack. The consuming site's config
+# (or fuego-adr's CLI options) is deep-merged on top, so anything here can be
+# overridden.
+routes:
+  adr: "/decisions/{slug}"
+
+taxonomies:
+  tags:
+    path: "/tags/{term}"
+    layout: "tag"
+    index_path: "/tags"
+    index_layout: "tag-index"

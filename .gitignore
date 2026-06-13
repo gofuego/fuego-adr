@@ -1,0 +1,17 @@
+# Build output
+/build/
+
+# Node / Tailwind tooling deps (package.json + lockfile are committed)
+/node_modules/
+
+# Compiled binary
+/fuego-adr
+
+# Build cache
+.fuego/
+
+# Go test artifacts
+*.test
+*.out
+
+.DS_Store
