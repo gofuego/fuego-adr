@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/FabioSol/fuego-adr/adr"
-	"github.com/FabioSol/fuego/engine"
+	"github.com/gofuego/fuego-adr/adr"
+	"github.com/gofuego/fuego/engine"
 )
 
 // TestPackOnVanillaEngine is the #15 acceptance: a plain Fuego engine with only

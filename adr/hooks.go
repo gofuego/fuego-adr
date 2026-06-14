@@ -5,7 +5,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/FabioSol/fuego/core"
+	"github.com/gofuego/fuego/core"
 )
 
 // adrSummary is a lightweight representation of an ADR for virtual pages.

@@ -9,7 +9,7 @@ import (
 	"text/tabwriter"
 
 	"github.com/bmatcuk/doublestar/v4"
-	"github.com/FabioSol/fuego-adr/adr"
+	"github.com/gofuego/fuego-adr/adr"
 	"github.com/spf13/cobra"
 )
 

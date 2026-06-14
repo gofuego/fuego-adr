@@ -1,7 +1,7 @@
 # fuego-adr
 
 A documentation site generator for **Architecture Decision Records** (ADRs),
-built on the [Fuego](https://github.com/FabioSol/fuego) meta-engine.
+built on the [Fuego](https://github.com/gofuego/fuego) meta-engine.
 
 Write your decisions as `*.adr.md` files, point `fuego-adr` at the folder, and
 get a styled, navigable site: a status dashboard, a chronological timeline, a
@@ -20,14 +20,14 @@ importable **format pack** (`adr.Pack()`) you can drop into any Fuego project.
 ## Install
 
 ```bash
-go install github.com/FabioSol/fuego-adr@latest
+go install github.com/gofuego/fuego-adr@latest
 ```
 
 Requires Go 1.23+. The binary lands in `$GOPATH/bin` (usually `~/go/bin`); make
 sure that's on your `PATH`. Or run without installing:
 
 ```bash
-go run github.com/FabioSol/fuego-adr@latest build docs/adr
+go run github.com/gofuego/fuego-adr@latest build docs/adr
 ```
 
 ## Quick start
@@ -190,8 +190,8 @@ import (
 	"context"
 	"log"
 
-	"github.com/FabioSol/fuego-adr/adr"
-	"github.com/FabioSol/fuego/engine"
+	"github.com/gofuego/fuego-adr/adr"
+	"github.com/gofuego/fuego/engine"
 )
 
 func main() {

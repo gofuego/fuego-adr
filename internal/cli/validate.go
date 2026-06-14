@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/FabioSol/fuego-adr/adr"
-	"github.com/FabioSol/fuego/engine"
+	"github.com/gofuego/fuego-adr/adr"
+	"github.com/gofuego/fuego/engine"
 	"github.com/spf13/cobra"
 )
 

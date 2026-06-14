@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/FabioSol/fuego/core"
+	"github.com/gofuego/fuego/core"
 )
 
 func TestParse_BasicADR(t *testing.T) {

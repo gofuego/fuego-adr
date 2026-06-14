@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/FabioSol/fuego-adr/internal/cli"
+	"github.com/gofuego/fuego-adr/internal/cli"
 )
 
 func main() {

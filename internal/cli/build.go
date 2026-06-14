@@ -5,9 +5,9 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/FabioSol/fuego-adr/adr"
-	adrconfig "github.com/FabioSol/fuego-adr/internal/config"
-	"github.com/FabioSol/fuego/engine"
+	"github.com/gofuego/fuego-adr/adr"
+	adrconfig "github.com/gofuego/fuego-adr/internal/config"
+	"github.com/gofuego/fuego/engine"
 	"github.com/spf13/cobra"
 )
 

@@ -8,7 +8,7 @@ import (
 	"sort"
 	"text/tabwriter"
 
-	"github.com/FabioSol/fuego-adr/adr"
+	"github.com/gofuego/fuego-adr/adr"
 	"github.com/spf13/cobra"
 )
 

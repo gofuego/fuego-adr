@@ -3,7 +3,7 @@
 ## What is fuego-adr?
 
 fuego-adr is a **domain-specific static site generator for Architecture
-Decision Records**, built on the [Fuego](https://github.com/FabioSol/fuego)
+Decision Records**, built on the [Fuego](https://github.com/gofuego/fuego)
 meta-engine. It turns `*.adr.md` files into a documentation site with a status
 dashboard, timeline, affected-files index, tag pages, and a page per decision,
 with section-completeness and supersession validation.
