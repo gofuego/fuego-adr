@@ -239,3 +239,47 @@ func TestFilenames(t *testing.T) {
 		t.Errorf("Filenames() = %v, want [*.adr.md]", fns)
 	}
 }
+
+func TestParse_RewritesADRCrossLinks(t *testing.T) {
+	raw := []byte(`---
+title: Some decision
+status: Accepted
+---
+## Context
+
+This builds on [001](001-universal-ast.adr.md) and conflicts with
+[002](002-other.adr.md#decision). See also https://example.com/x.adr.md.
+
+## Decision
+
+Decided.
+
+## Consequences
+
+Done.
+`)
+
+	_, nodes, err := New().Parse(raw)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	ctx := nodes[0].Content
+
+	// Relative ADR cross-links are rewritten to the decision page route,
+	// base-relative so they resolve under any base_url.
+	if !strings.Contains(ctx, `href="decisions/001-universal-ast.adr/"`) {
+		t.Errorf("cross-link not rewritten: %s", ctx)
+	}
+	// Fragments are preserved.
+	if !strings.Contains(ctx, `href="decisions/002-other.adr/#decision"`) {
+		t.Errorf("fragment cross-link not rewritten: %s", ctx)
+	}
+	// The raw .adr.md form must be gone for relative links.
+	if strings.Contains(ctx, `href="001-universal-ast.adr.md"`) {
+		t.Errorf("raw .adr.md link still present: %s", ctx)
+	}
+	// Absolute URLs that merely contain .adr.md are left alone.
+	if !strings.Contains(ctx, "https://example.com/x.adr.md") {
+		t.Errorf("absolute URL should not be rewritten: %s", ctx)
+	}
+}

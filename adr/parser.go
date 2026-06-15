@@ -108,13 +108,22 @@ func splitSections(body []byte) []section {
 	return sections
 }
 
-// renderMarkdown converts Markdown bytes to HTML.
+// adrCrossLinkRe matches a rendered relative link to another ADR file —
+// href="012-foo.adr.md" or href="012-foo.adr.md#decision" — but not absolute
+// URLs or paths (it forbids ':' '/' '?' '#' in the filename).
+var adrCrossLinkRe = regexp.MustCompile(`href="([^":/?#]+)\.adr\.md(#[^"]*)?"`)
+
+// renderMarkdown converts Markdown bytes to HTML and rewrites relative
+// cross-links between ADR files ("NNN-slug.adr.md") to the decision page route
+// ("decisions/NNN-slug.adr/"). The result is base-relative, so it resolves
+// correctly under the site's <base href> for any deployment base URL.
 func renderMarkdown(src []byte) (string, error) {
 	var buf bytes.Buffer
 	if err := md.Convert(src, &buf); err != nil {
 		return "", err
 	}
-	return buf.String(), nil
+	html := adrCrossLinkRe.ReplaceAllString(buf.String(), `href="decisions/$1.adr/$2"`)
+	return html, nil
 }
 
 // normalizeEnvelope converts scalar-or-list fields to consistent list form

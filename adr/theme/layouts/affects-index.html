@@ -12,7 +12,7 @@
       </div>
       <div class="flex flex-wrap gap-2">
         {{range .adrs}}
-        <a href="{{.url}}" class="text-xs px-2 py-0.5 bg-gray-800 text-gray-300 rounded hover:bg-gray-700 transition-colors">
+        <a href="{{slice .url 1}}" class="text-xs px-2 py-0.5 bg-gray-800 text-gray-300 rounded hover:bg-gray-700 transition-colors">
           ADR-{{.number}} {{.title}}
         </a>
         {{end}}

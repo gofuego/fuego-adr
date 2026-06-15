@@ -17,7 +17,7 @@
             {{else if eq .status "superseded"}}bg-gray-700 text-gray-300
             {{end}}">{{.status}}</span>
         </div>
-        <a href="{{.url}}" class="text-white hover:text-blue-400 transition-colors">{{.title}}</a>
+        <a href="{{slice .url 1}}" class="text-white hover:text-blue-400 transition-colors">{{.title}}</a>
         {{if .supersedes}}
         <div class="text-xs text-gray-500 mt-1">
           Supersedes: {{range $i, $n := .supersedes}}{{if $i}}, {{end}}ADR-{{$n}}{{end}}

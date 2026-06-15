@@ -8,7 +8,7 @@
     </div>
     <div class="flex flex-wrap gap-3">
       {{range .Page.Envelope.tbd_adrs}}
-      <a href="{{.url}}" class="text-sm text-yellow-300 hover:text-yellow-100 transition-colors">
+      <a href="{{slice .url 1}}" class="text-sm text-yellow-300 hover:text-yellow-100 transition-colors">
         ADR-{{.number}} {{.title}}
         {{if .deadline}}<span class="text-yellow-500 text-xs ml-1">({{.deadline}})</span>{{end}}
       </a>
@@ -25,7 +25,7 @@
     </div>
     <div class="flex flex-wrap gap-3">
       {{range .Page.Envelope.proposed_adrs}}
-      <a href="{{.url}}" class="text-sm text-blue-300 hover:text-blue-100 transition-colors">
+      <a href="{{slice .url 1}}" class="text-sm text-blue-300 hover:text-blue-100 transition-colors">
         ADR-{{.number}} {{.title}}
       </a>
       {{end}}
@@ -41,7 +41,7 @@
     </div>
     <div class="space-y-2" data-search-list>
       {{range .Page.Envelope.accepted_adrs}}
-      <a href="{{.url}}" class="block p-3 rounded-lg bg-gray-900 border border-gray-800 hover:border-gray-600 transition-colors" data-search-item>
+      <a href="{{slice .url 1}}" class="block p-3 rounded-lg bg-gray-900 border border-gray-800 hover:border-gray-600 transition-colors" data-search-item>
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-3">
             <span class="text-xs font-mono text-gray-500">ADR-{{.number}}</span>
@@ -66,7 +66,7 @@
     </summary>
     <div class="mt-2 space-y-1">
       {{range .Page.Envelope.inactive_adrs}}
-      <a href="{{.url}}" class="block p-2 rounded text-sm text-gray-500 hover:text-gray-300 transition-colors">
+      <a href="{{slice .url 1}}" class="block p-2 rounded text-sm text-gray-500 hover:text-gray-300 transition-colors">
         <span class="font-mono">ADR-{{.number}}</span>
         <span class="ml-2">{{.title}}</span>
         <span class="ml-2 text-xs px-1.5 py-0.5 rounded
