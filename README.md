@@ -23,7 +23,7 @@ importable **format pack** (`adr.Pack()`) you can drop into any Fuego project.
 go install github.com/gofuego/fuego-adr@latest
 ```
 
-Requires Go 1.23+. The binary lands in `$GOPATH/bin` (usually `~/go/bin`); make
+Requires Go 1.25+. The binary lands in `$GOPATH/bin` (usually `~/go/bin`); make
 sure that's on your `PATH`. Or run without installing:
 
 ```bash
@@ -131,7 +131,7 @@ fuego-adr build [adr-path]              Build the static site
 fuego-adr serve [adr-path]              Dev server with live reload
 fuego-adr validate [adr-path]           Validate without building (CI gate)
 fuego-adr list [adr-path]               List all ADRs
-fuego-adr affected --files <f>...        Find ADRs whose `affects` match files
+fuego-adr affected <file>...             Find ADRs whose `affects` match files
 ```
 
 Common flags:
@@ -148,7 +148,7 @@ Common flags:
 fuego-adr build docs/adr -o public --base-url /my-repo   # for a GitHub Pages subpath
 fuego-adr validate docs/adr                              # CI: non-zero exit on any error
 fuego-adr list docs/adr --json                           # machine-readable index
-fuego-adr affected --files src/database/schema.sql -p docs/adr
+fuego-adr affected src/database/schema.sql -p docs/adr
 ```
 
 ## Configuration
