@@ -26,7 +26,7 @@ func newAffectedCmd() *cobra.Command {
 	var quiet bool
 
 	cmd := &cobra.Command{
-		Use:   "affected [--files file1 file2 ...]",
+		Use:   "affected <file> [file...]",
 		Short: "Find ADRs affecting given files",
 		Args:  cobra.MinimumNArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {

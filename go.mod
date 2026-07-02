@@ -3,7 +3,7 @@ module github.com/gofuego/fuego-adr
 go 1.25.0
 
 require (
-	github.com/gofuego/fuego v0.3.3
+	github.com/gofuego/fuego v0.4.4
 	github.com/spf13/cobra v1.10.2
 	github.com/yuin/goldmark v1.8.2
 )
